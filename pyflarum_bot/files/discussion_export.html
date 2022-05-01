@@ -1,0 +1,14 @@
+<style>.p{padding:2rem;margin:auto 0;background:gainsboro;};.p>h3{margin-bottom:1.5rem;};.p>h3>span{color:dimgray;};.p>div{padding:1rem;background:lightgray};</style>
+
+<div>
+{% for posts in all_posts(discussion) %}
+{% for post in posts %}
+    <div class="p">
+        <h3>{{ post.get_author().username }} | <span>{{ post.createdAt }}</span></h3>
+        <div>
+            {{ post.contentHtml if post.is_comment() else '<no content>' }} {# TODO: Locked, sticky, etc... messages #}
+        </div>
+    </div>
+{% endfor %}
+{% endfor %}
+</div>
